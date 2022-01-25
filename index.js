@@ -4,6 +4,9 @@ const Discord = require("discord.js")
 /* Token del bot */
 require("dotenv").config()
 
+/*  Importación del script de generación de imagen */
+const generateImage = require("./imageGenerator.js")
+
 /* Creacion del Cliente */
 const client = new Discord.Client({
     intents: [
@@ -40,8 +43,12 @@ client.on("messageCreate", (message) => {
 /* Creación del mensaje de bienvenida */
 const canalBienvenida = "932710091713556590"
 
-client.on("guildMemberAdd",(member)=>{
-    member.guild.channels.cache.get(canalBienvenida).send(`<@${member.id}> ¡Bienvenido al servidor puto!`)
+client.on("guildMemberAdd", async (member)=>{
+    const img = await generateImage(member)
+    member.guild.channels.cache.get(canalBienvenida).send({
+        content: `<@${member.id}> ¡Bienvenido al servidor puto!`,
+        files: [img]
+    })
 })
 
 client.login(process.env.TOKEN)
