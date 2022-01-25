@@ -41,7 +41,7 @@ client.on("messageCreate", (message) => {
 const canalBienvenida = "932710091713556590"
 
 client.on("guildMemberAdd",(member)=>{
-    member.guild.channels.cache.get(canalBienvenida).send(`<@${member.id}> ¡Bienvenido al servidor!`)
+    member.guild.channels.cache.get(canalBienvenida).send(`<@${member.id}> ¡Bienvenido al servidor puto!`)
 })
 
 client.login(process.env.TOKEN)
